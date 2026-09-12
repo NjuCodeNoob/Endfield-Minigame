@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#dededb"><title>终末地模拟终端</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="terminal">
+ <div class="ambient" aria-hidden="true"><div class="orbit"></div><div class="orbit inner"></div><div class="triangle"></div><div class="contours"></div><div class="terrain terrain-a"></div><div class="terrain terrain-b"></div><div class="particles"></div></div>
+ <header class="topbar"><div class="path"><svg viewBox="0 0 24 20" aria-hidden="true"><path d="M1 3h9l3 3h10v13H1z"/></svg><span class="chevron">›</span><h1>终末地模拟终端</h1></div><label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m14 14 7 7"/></svg><input aria-label="搜索模块" autocomplete="off" spellcheck="false"></label><button class="reset" aria-label="重置首页" title="重置首页"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15"/><path d="m7 7 7 7m4 4 7 7M25 7l-7 7m-4 4-7 7"/></svg></button></header>
+ <main class="modules" aria-label="模拟终端模块">
+  <button class="module" data-module="repair" aria-label="修复机器人">
+   <span class="selection" aria-hidden="true"><i class="top-marks"></i><span class="runes upper">⌖<br>⌞<br>⊣<br>⌁</span><span class="halftone"></span><span class="runes lower">⌖<br>⌞<br>⊣<br>⌁</span><span class="micro-square a"></span><span class="micro-square b"></span></span>
+   <span class="module-body"><span class="number">01</span><span class="blueprint" aria-hidden="true"><svg class="symbol" viewBox="0 0 64 64"><path d="M30 7 48 25 40 33 30 23 12 41 4 33Z M30 27 39 36 31 44 40 53 31 61 13 43Z M49 28 57 36 49 44 41 36Z"/></svg><span class="drawing-lines"></span></span><span class="object object-repair" aria-hidden="true"></span><span class="module-title">修复机器人</span><span class="active-arrow" aria-hidden="true">▴<br>▴</span></span>
+  </button>
+  <button class="module" data-module="salvage" aria-label="浮空回收">
+   <span class="selection" aria-hidden="true"><i class="top-marks"></i><span class="runes upper">⌖<br>⌞<br>⊣<br>⌁</span><span class="halftone"></span><span class="runes lower">⌖<br>⌞<br>⊣<br>⌁</span><span class="micro-square a"></span><span class="micro-square b"></span></span>
+   <span class="module-body"><span class="number">02</span><span class="blueprint" aria-hidden="true"><svg class="symbol" viewBox="0 0 180 180"><circle cx="90" cy="44" r="35"/><circle cx="43" cy="76" r="24"/><circle cx="137" cy="76" r="24"/><g fill="none" stroke="currentColor" stroke-width="2.5"><path d="M62 69 84 133M118 69 96 133M29 94 80 133M55 96 87 133M125 96 93 133M151 94 100 133M90 79v54M83 140l-6 12M97 140l6 12"/></g><path d="M77 132h26v8H77zM65 150h50v24H65z"/><path class="cutout" d="M70 154h40v3H70zM72 162h36v7H72z"/><g class="cutout"><path d="M59 63h62v3H59zM22 88h42v3H22zM116 88h42v3h-42z"/></g></svg><span class="drawing-lines"></span></span><span class="object object-salvage" aria-hidden="true"></span><span class="module-title">浮空回收</span><span class="active-arrow" aria-hidden="true">▴<br>▴</span></span>
+  </button>
+  <button class="module upcoming" data-module="upcoming" aria-label="敬请期待">
+   <span class="selection" aria-hidden="true"><i class="top-marks"></i><span class="runes upper">⌖<br>⌞<br>⊣<br>⌁</span><span class="halftone"></span><span class="runes lower">⌖<br>⌞<br>⊣<br>⌁</span><span class="micro-square a"></span><span class="micro-square b"></span></span>
+   <span class="module-body"><span class="number">03</span><span class="blueprint" aria-hidden="true"><svg class="symbol" viewBox="0 0 180 180"><path d="M48 27h84v19H48zM48 140h84v19H48zM57 50h66v24L99 94l24 23v19H57v-19l24-23-24-20z"/><path class="cutout" d="M72 58h36v10L90 83 72 68z"/></svg><span class="drawing-lines"></span></span><span class="module-title">敬请期待</span><span class="active-arrow" aria-hidden="true">▴<br>▴</span></span>
+  </button>
+ </main>
+ <p class="empty" hidden>未找到相关模块</p>
+ <span class="edge tl" aria-hidden="true">╲</span><span class="edge tr" aria-hidden="true">╲</span><span class="edge bl" aria-hidden="true">╲</span><span class="edge br" aria-hidden="true">╲</span>
+ <footer><span class="fineprint" aria-hidden="true">ENDFIELD INDUSTRIES // SIMULATION SYSTEM<br>TERMINAL INTERFACE · LOCAL ENVIRONMENT<br>────────────────────────<br>PROTOCOL / STANDBY / 0001</span><span class="connection"><i></i> LOCAL <span>终末地模拟终端</span></span></footer>
+ <dialog><form method="dialog"><span class="dialog-index">ENDFIELD / SIMULATION TERMINAL</span><button class="dialog-close" aria-label="关闭">×</button><h2></h2><p></p><button class="dialog-return">返回终端 <span>↵</span></button></form></dialog>
+</div><link rel="stylesheet" href="repair.css"><link rel="stylesheet" href="salvage.css"><script src="audio.js"></script><script src="repair-levels.js"></script><script src="repair-core.js"></script><script src="custom-core.js"></script><script src="custom-ui.js"></script><link rel="stylesheet" href="custom.css"><script src="repair.js"></script><script src="salvage-core.js"></script><script src="salvage-levels.js"></script><script src="salvage-3d.js"></script><script src="salvage-custom-core.js"></script><script src="salvage-custom-ui.js"></script><script src="salvage.js"></script><script src="app.js"></script>
+</body></html>

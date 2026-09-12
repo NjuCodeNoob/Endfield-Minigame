@@ -1,0 +1,14 @@
+{
+  "name": "endfield-simulation-terminal",
+  "version": "1.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "check": "node --check dist/app.js && node --check dist/audio.js && node --check dist/repair.js && node --check dist/repair-core.js && node --check dist/repair-levels.js && node --check dist/custom-core.js && node --check dist/custom-ui.js && node --check dist/salvage-core.js && node --check dist/salvage.js && node --check dist/salvage-levels.js && node --check dist/salvage-3d.js && node --check dist/salvage-custom-core.js && node --check dist/salvage-custom-ui.js",
+    "test": "node --test tests/*.test.cjs"
+  },
+  "devDependencies": {
+    "happy-dom": "^20.14.3"
+  }
+}

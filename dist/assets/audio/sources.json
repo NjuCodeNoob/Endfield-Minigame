@@ -1,0 +1,98 @@
+{
+  "collection": "Updated user-provided gameplay reference",
+  "source": "序列 02_1.mp4",
+  "license": "user-provided-reference; no CC0 claim",
+  "processing": "48 kHz stereo PCM; 35 Hz highpass; gentle 6 dB stationary noise reduction at -65 dB floor; bounded gain; 3 ms fade-in and 10 ms fade-out; original pitch and timing preserved",
+  "sounds": {
+    "pick": {
+      "source": "序列 02_1.mp4",
+      "start_seconds": 7.33,
+      "end_seconds": 7.47,
+      "event": "第二次拾取元件",
+      "duration": 0.14,
+      "peak_dbfs": -10.0,
+      "gain_db": 11.05,
+      "sha256": "add9773f446ded6d441bcc52f261c003bbed31f6d0f2a6f16ed89733604890f2"
+    },
+    "rotate": {
+      "source": "序列 02_1.mp4",
+      "start_seconds": 4.965,
+      "end_seconds": 5.265,
+      "event": "第一次旋转元件",
+      "duration": 0.3,
+      "peak_dbfs": -10.0,
+      "gain_db": 11.26,
+      "sha256": "4e0109584b0d11134d2a081635499f95baa6dd5173558747175dd033331f47c8"
+    },
+    "drop": {
+      "source": "序列 02_1.mp4",
+      "start_seconds": 6.795,
+      "end_seconds": 6.97,
+      "event": "元件落格后的短反馈",
+      "duration": 0.175,
+      "peak_dbfs": -10.0,
+      "gain_db": 13.22,
+      "sha256": "b75ae75250e31f8e75cb117d4b6bdc62b2636af4f9f292e5744acc40a66a8d55"
+    },
+    "success": {
+      "source": "序列 02_1.mp4",
+      "start_seconds": 8.345,
+      "end_seconds": 9.39,
+      "event": "棋盘完成闪框与模块已修复提示",
+      "duration": 1.045,
+      "peak_dbfs": -10.0,
+      "gain_db": 3.37,
+      "sha256": "382d2e5166c5c62c0f98faa2b6ef94cf5555aedc286afce39710de5485862474"
+    },
+    "module": {
+      "source": "序列 02_1.mp4",
+      "start_seconds": 4.495,
+      "end_seconds": 4.745,
+      "event": "拖拽开始时段反馈，复用于模块选择",
+      "duration": 0.25,
+      "peak_dbfs": -12.48,
+      "gain_db": 18.0,
+      "sha256": "3f8277bf913e11d0b8d074aa54aab0238ba956e89ff047761b5deb2b42ba13d8"
+    },
+    "level": {
+      "source": "序列 02_1.mp4",
+      "start_seconds": 8.865,
+      "end_seconds": 9.39,
+      "event": "模块已修复提示尾段，复用于关卡选择",
+      "duration": 0.525,
+      "peak_dbfs": -10.0,
+      "gain_db": 7.7,
+      "sha256": "ef1e117120a15525a9240c672c4af9acb11569c74153297ef6166e49a188b933"
+    },
+    "mode": {
+      "source": "序列 02_1.mp4",
+      "start_seconds": 4.16,
+      "end_seconds": 4.34,
+      "event": "元件选取短声，复用于图形数字切换",
+      "duration": 0.18,
+      "peak_dbfs": -10.0,
+      "gain_db": 11.64,
+      "sha256": "3c3670421bbc30f938a25b4446e6ce755d51b3ba097de36fec31607a65ae3144"
+    },
+    "invalid": {
+      "source": "序列 02_1.mp4",
+      "start_seconds": 5.69,
+      "end_seconds": 6.105,
+      "event": "旋转和边界预览反馈，复用于无效放置",
+      "duration": 0.415,
+      "peak_dbfs": -10.0,
+      "gain_db": 13.06,
+      "sha256": "688ee97fa0e22bc7034e6494c4238091855c475feb0a56093527c5dbd18ef9fb"
+    },
+    "ui": {
+      "source": "序列 02_1.mp4",
+      "start_seconds": 6.13,
+      "end_seconds": 6.305,
+      "event": "落格预览短声，复用于返回和重置",
+      "duration": 0.175,
+      "peak_dbfs": -18.12,
+      "gain_db": 18.0,
+      "sha256": "dbbed0c4362f97d953e0601490e3558450a793fe9190768faef47a0dd2d1799a"
+    }
+  }
+}

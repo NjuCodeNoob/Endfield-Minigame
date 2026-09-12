@@ -1,0 +1,47 @@
+{
+  "source": "Arknights  Endfield 2026.09.11 - 18.01.52.01.mp4",
+  "license": "user-provided-reference; no CC0 claim",
+  "processing": "48kHz stereo; 90Hz highpass, bounded stationary denoise, gain capped at 12dB, 4ms/20ms fades. Mixed reference ambience is reduced, not source-separated.",
+  "sounds": {
+    "salvage-pick": {
+      "start_seconds": 5.0,
+      "end_seconds": 5.42,
+      "event": "选取气球",
+      "duration": 0.4195833333333333,
+      "sha256": "3648b0dfc94d1167a30ec689c4f0058d9b8632be768fc918942374287319e637",
+      "peak_dbfs": -9.999861863811931
+    },
+    "salvage-drop": {
+      "start_seconds": 6.68,
+      "end_seconds": 7.18,
+      "event": "气球绑缚落格",
+      "duration": 0.4988958333333333,
+      "sha256": "a8f2a3035dbf11d9a98643e6045614a0201b6f23d0706f40ab23e15675934cd1",
+      "peak_dbfs": -15.380720733002759
+    },
+    "salvage-ready": {
+      "start_seconds": 31.6,
+      "end_seconds": 32.18,
+      "event": "达成平衡扫描",
+      "duration": 0.5801458333333334,
+      "sha256": "dc98b7b1f4db014c4e74c632fe8cce023b4b549192ac586c42f7e7e763ccdba4",
+      "peak_dbfs": -9.999861863811931
+    },
+    "salvage-launch": {
+      "start_seconds": 34.48,
+      "end_seconds": 35.4,
+      "event": "确认回收启动",
+      "duration": 0.9201458333333333,
+      "sha256": "ee2f98dd75ec1d6a49607da3f07d475006eafea53b81608f08588beea54e656c",
+      "peak_dbfs": -9.999861863811931
+    },
+    "salvage-success": {
+      "start_seconds": 38.02,
+      "end_seconds": 38.73,
+      "event": "回收成功提示",
+      "duration": 0.7104166666666667,
+      "sha256": "b38c098a540c5c91bdadaa8e540581d4716c781aa616ea062516772336601d03",
+      "peak_dbfs": -9.999861863811931
+    }
+  }
+}
