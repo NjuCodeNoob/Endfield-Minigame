@@ -43,7 +43,7 @@
     const left=small?14:Math.min(190,w*.22),right=small?14:205,top=small?115:100,bottom=small?205:105;
     // Each color owns its own lane. The count rail holds up to n bars, including excess.
     host.classList.toggle('three-color',k===3);
-    const rail=Math.max(48,n*3+6),gap=8,availableW=w-left-right,availableH=Math.max(50,h-top-bottom);
+    const rail=Math.max(48,k===3?n*3+6:n*8+9),gap=8,availableW=w-left-right,availableH=Math.max(50,h-top-bottom);
     const s=Math.max(1,Math.min(58,(availableW-rail-gap)/n,(availableH-rail-gap)/n));
     const board=n*s,x=left+(availableW-board-rail-gap)/2+rail+gap+board/2,y=top+(availableH-board-rail-gap)/2+rail+gap+board/2;
     host.style.setProperty('--custom-cell',`${s}px`);host.style.setProperty('--custom-board-x',`${x}px`);host.style.setProperty('--custom-board-y',`${y}px`);
@@ -51,6 +51,10 @@
     host.style.setProperty('--counter-color-gap',`${colorGap}px`);
     host.style.setProperty('--counter-square',`${square}px`);
     host.style.setProperty('--counter-font',`${Math.min(8,s/2)}px`);
+    const barLength=Math.min(25,Math.max(12,w*.014)),barScale=Math.min(1,Math.max(.05,(s-(k-1)*4)/(k*barLength)));
+    host.style.setProperty('--counter-bar-length',`${barLength*barScale}px`);
+    host.style.setProperty('--counter-bar-width',`${5*barScale}px`);
+    host.style.setProperty('--counter-bar-gap',`${3*barScale}px`);
     host.style.setProperty('--counter-lane',`${Math.max(1,(s-(k-1)*2)/k)}px`);host.style.setProperty('--counter-tick',`${Math.max(1,(rail-(n-1))/n)}px`);
   }
   function showLevels(){
