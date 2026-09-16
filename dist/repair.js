@@ -5,6 +5,7 @@
   const escape=CustomRepairUI.escape;
   const host=document.createElement('section');host.id='repair-app';host.hidden=true;document.body.append(host);
   let screen='home',current=0,pieces=[],drag=null,selected=null,startTime=0,finished=false,numeric=false,raf=0,completionTimer=0,records={},shapeId=0;
+  let race=null;
   const STORAGE='endfield.repair.records.v1';
   try {const saved=JSON.parse(localStorage.getItem(STORAGE)||'{}');if(saved&&typeof saved==='object')records=saved;}catch{}
   const formatTime=ms=>{const c=Math.floor(ms/10);return `${String(Math.floor(c/6000)).padStart(2,'0')}:${String(Math.floor(c/100)%60).padStart(2,'0')}.${String(c%100).padStart(2,'0')}`;};
@@ -58,9 +59,11 @@
     host.style.setProperty('--counter-lane',`${Math.max(1,(s-(k-1)*2)/k)}px`);host.style.setProperty('--counter-tick',`${Math.max(1,(rail-(n-1))/n)}px`);
   }
   function showLevels(){
+    if(race){race.onExit();return;}
     clean();levels.splice(RepairLevels.length,levels.length-RepairLevels.length,...K.read(customStorage));current=Math.min(current,levels.length-1);screen='levels';host.hidden=false;host.className='repair-selector';document.querySelector('.terminal').inert=true;
-    host.innerHTML=`<div class="selector-noise"></div><header class="selector-header"><button class="selector-back" data-home>‹</button><span>终末地模拟终端 <b>›</b> 修复机器人</span><button class="repair-close" data-home aria-label="返回首页">${iconClose}</button></header><div class="selector-content"><div class="selector-title"><div><p>REPAIR TERMINAL / MODULE DIRECTORY</p><h2>选择修复模块<span>设备修复</span></h2></div><span class="completion-count">${levels.filter(l=>validRecord(l.id)).length}<small> / ${String(levels.length).padStart(2,'0')} 已修复</small></span></div><div class="level-grid">${levels.map((level,i)=>`${level.custom?'<div class="custom-card-wrap">':''}<button class="level-card ${validRecord(level.id)?'cleared':''}" data-level="${i}"><span class="card-number">${String(i+1).padStart(2,'0')}</span><span class="card-code">${moduleCode(level)}</span>${miniBoard(level)}<span class="card-title">${escape(level.name)}</span><span class="card-meta">${level.size} × ${level.size}<b>·</b>${level.pieces.length} 元件<b>·</b>${['单色','双色','三色'][Object.keys(level.rows).length-1]}</span><span class="card-record">${validRecord(level.id)?`<i>✓ 已修复</i><span>最佳 ${formatTime(validRecord(level.id))}</span>`:'<i>待修复</i><span>进入模块 ↗</span>'}</span></button>${level.custom?`<div class="custom-card-actions"><button data-seed-custom="${i}">种子</button><button data-delete-custom="${i}" aria-label="删除 ${escape(level.code)}">删除</button></div></div>`:''}`).join('')}<button class="level-card custom-entry" data-custom><span class="card-number">＋</span><span class="card-code">CUSTOM MODULE</span><span class="card-title">自定义</span><span class="card-meta">创建关卡 · 导入关卡</span></button></div><p class="selector-notice" role="status"></p><div class="selector-bottom"><span>拖放元件 · 校准行列 · 接通回路</span><span>ENDFIELD / REPAIR SYSTEM</span></div></div>`;
+    host.innerHTML=`<div class="selector-noise"></div><header class="selector-header"><button class="selector-back" data-home>‹</button><span>终末地模拟终端 <b>›</b> 修复机器人</span><button class="repair-close" data-home aria-label="返回首页">${iconClose}</button></header><div class="selector-content"><div class="selector-title"><div><p>REPAIR TERMINAL / MODULE DIRECTORY</p><h2>选择修复模块<span>设备修复</span></h2></div><span class="completion-count">${levels.filter(l=>validRecord(l.id)).length}<small> / ${String(levels.length).padStart(2,'0')} 已修复</small></span></div><div class="level-grid"><button class="level-card race-entry" data-repair-race><span class="card-number">≫</span><span class="card-code">RACE CHALLENGE</span><span class="card-title">竞速挑战</span><span class="card-meta">个人竞速 · 联机竞速</span></button>${levels.map((level,i)=>`${level.custom?'<div class="custom-card-wrap">':''}<button class="level-card ${validRecord(level.id)?'cleared':''}" data-level="${i}"><span class="card-number">${String(i+1).padStart(2,'0')}</span><span class="card-code">${moduleCode(level)}</span>${miniBoard(level)}<span class="card-title">${escape(level.name)}</span><span class="card-meta">${level.size} × ${level.size}<b>·</b>${level.pieces.length} 元件<b>·</b>${['单色','双色','三色'][Object.keys(level.rows).length-1]}</span><span class="card-record">${validRecord(level.id)?`<i>✓ 已修复</i><span>最佳 ${formatTime(validRecord(level.id))}</span>`:'<i>待修复</i><span>进入模块 ↗</span>'}</span></button>${level.custom?`<div class="custom-card-actions"><button data-seed-custom="${i}">种子</button><button data-delete-custom="${i}" aria-label="删除 ${escape(level.code)}">删除</button></div></div>`:''}`).join('')}<button class="level-card custom-entry" data-custom><span class="card-number">＋</span><span class="card-code">CUSTOM MODULE</span><span class="card-title">自定义</span><span class="card-meta">创建关卡 · 导入关卡</span></button></div><p class="selector-notice" role="status"></p><div class="selector-bottom"><span>拖放元件 · 校准行列 · 接通回路</span><span>ENDFIELD / REPAIR SYSTEM</span></div></div>`;
     host.querySelectorAll('[data-home]').forEach(b=>b.onclick=home);
+    host.querySelector('[data-repair-race]').onclick=()=>{home();window.RaceChallenge.open('repair');};
     host.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>{sound('level');startLevel(Number(b.dataset.level));});
     host.querySelector('[data-custom]').onclick=()=>openCustom();
     host.querySelectorAll('[data-seed-custom]').forEach(b=>b.onclick=()=>openCustom(levels[Number(b.dataset.seedCustom)]));
@@ -170,6 +173,7 @@
   function cancelDrag(){if(!drag)return;Object.assign(pieces[drag.id],drag.original);endDrag();if(screen==='game'&&host.querySelector('.parts-tray'))renderPieces();}
   function announce(message){const live=host.querySelector('.game-live');if(live)live.textContent=message;}
   function complete(){
+    if(race){race.onComplete(JSON.parse(JSON.stringify(pieces)));return;}
     finished=true;cancelAnimationFrame(raf);const elapsed=performance.now()-startTime,level=levels[current],previous=validRecord(level.id),isBest=!previous||elapsed<previous;
     host.querySelector('time').textContent=formatTime(elapsed);records[level.id]=C.bestTime(previous,elapsed);let saved=true;try{localStorage.setItem(STORAGE,JSON.stringify(records));}catch{saved=false;}
     host.querySelector('.repair-board').classList.add('board-complete');sound('success');host.querySelector('.parts-tray').inert=true;
@@ -191,7 +195,7 @@
     return legacy[e.keyCode]||legacy[e.which]||(e.key?.toLowerCase()==='r'?'KeyR':e.key===' '?'Space':e.key);
   }
   function handleControl(e,key){
-    if(screen==='home'||screen==='custom')return;
+    if(screen==='home'||screen==='custom'||(race&&host.inert))return;
     if(e.target?.closest?.('input,textarea,select,[contenteditable="true"]')||e.ctrlKey||e.metaKey||e.altKey)return;
     if(key==='Escape'){e.preventDefault();e.stopImmediatePropagation();if(drag)cancelDrag();else if(screen==='levels')home();else showLevels();return;}
     if(screen!=='game')return;
@@ -204,5 +208,5 @@
   // Some IMEs obscure keydown but expose the physical key on keyup. Handle that once.
   window.addEventListener('keyup',e=>{const key=controlKey(e);if(key!=='KeyR'&&key!=='Tab')return;if(!heldKeys.delete(key))handleControl(e,key);},true);
   window.addEventListener('blur',()=>heldKeys.clear());
-  window.RepairGame={open:showLevels};
+  window.RepairGame={open:showLevels,startRace(level,callbacks){if(race){clean();levels.pop();}race=callbacks;levels.push(level);startLevel(levels.length-1);},stopRace(){if(!race)return;race=null;clean();levels.pop();screen='home';host.inert=false;host.hidden=true;host.innerHTML='';}};
 })();

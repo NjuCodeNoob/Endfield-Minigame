@@ -1,0 +1,42 @@
+services:
+  race:
+    build:
+      context: ..
+    restart: unless-stopped
+    environment:
+      HOST: 0.0.0.0
+      PORT: 5173
+      RACE_DATA_FILE: /data/store.json
+      ALLOWED_ORIGINS: https://njucodenoob.github.io,https://${RACE_DOMAIN:?Set RACE_DOMAIN}
+    volumes:
+      - race-data:/data
+    expose:
+      - "5173"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+  proxy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      RACE_DOMAIN: ${RACE_DOMAIN:?Set RACE_DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - race
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  race-data:
+  caddy-data:
+  caddy-config:

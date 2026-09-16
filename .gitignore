@@ -2,3 +2,10 @@
 reference/
 node_modules/
 .sites-runtime/
+
+.race-data/
+.env
+promo/
+
+.wrangler/
+.dev.vars

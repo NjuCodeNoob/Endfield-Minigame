@@ -5,10 +5,14 @@
   "scripts": {
     "dev": "node server.mjs",
     "start": "node server.mjs",
-    "check": "node --check dist/app.js && node --check dist/audio.js && node --check dist/repair.js && node --check dist/repair-core.js && node --check dist/repair-levels.js && node --check dist/custom-core.js && node --check dist/custom-ui.js && node --check dist/salvage-core.js && node --check dist/salvage.js && node --check dist/salvage-levels.js && node --check dist/salvage-3d.js && node --check dist/salvage-custom-core.js && node --check dist/salvage-custom-ui.js",
-    "test": "node --test tests/*.test.cjs"
+    "check": "node --check dist/app.js && node --check dist/audio.js && node --check dist/repair.js && node --check dist/repair-core.js && node --check dist/repair-levels.js && node --check dist/custom-core.js && node --check dist/custom-ui.js && node --check dist/salvage-core.js && node --check dist/salvage.js && node --check dist/salvage-levels.js && node --check dist/salvage-3d.js && node --check dist/salvage-custom-core.js && node --check dist/salvage-custom-ui.js && node --check dist/race.js && node --check backend/generator.cjs && node --check backend/race-service.cjs && node --check server.mjs && node --check cloudflare/worker.mjs",
+    "test": "node --test tests/*.test.cjs",
+    "cf:dev": "wrangler dev --config cloudflare/wrangler.json",
+    "cf:deploy": "wrangler deploy --config cloudflare/wrangler.json",
+    "cf:test": "node tests/cloudflare-smoke.cjs"
   },
   "devDependencies": {
-    "happy-dom": "^20.14.3"
+    "happy-dom": "^20.14.3",
+    "wrangler": "4.132.0"
   }
 }

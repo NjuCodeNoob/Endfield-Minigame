@@ -1,0 +1,38 @@
+{
+  "name": "endfield-race",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-09-16",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "workers_dev": true,
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "RACE_HUB",
+        "class_name": "RaceHub"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "RaceHub"
+      ]
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "endfield-race-db",
+      "database_id": "e4998a6c-23b4-424e-95f7-caf377a2efe5",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "ALLOWED_ORIGINS": "https://njucodenoob.github.io,http://127.0.0.1:5173,http://localhost:5173",
+    "MAX_ACTIVE_RACES": "64"
+  },
+  "account_id": "27188173321224aae889afd124b3f129"
+}

@@ -1,0 +1,27 @@
+[Unit]
+Description=Endfield race API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=endfield-race
+Group=endfield-race
+WorkingDirectory=/opt/endfield-race
+ExecStart=/opt/endfield-node/bin/node /opt/endfield-race/server.mjs
+Environment=HOST=127.0.0.1
+Environment=PORT=5173
+Environment=RACE_DATA_FILE=/var/lib/endfield-race/store.json
+Environment=ALLOWED_ORIGINS=https://njucodenoob.github.io
+StateDirectory=endfield-race
+StateDirectoryMode=0700
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+.git
+node_modules
+promo
+.tools
+reference
+.race-data
+.env
+*.log

@@ -1,0 +1,4 @@
+{$RACE_DOMAIN} {
+    encode gzip
+    reverse_proxy race:5173
+}
